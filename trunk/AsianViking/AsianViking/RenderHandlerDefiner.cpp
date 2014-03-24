@@ -10,8 +10,11 @@ bool Gfx::loadTexture(std::string name)
 		return false;
 	}	
 	loadedTextureMap.insert(loadedTextureMap.end(),std::make_pair(name, tempTexture));
+		
 	return true;
+
 }
+
 const sf::Texture* Gfx::requestTexture(std::string name) const
 {
 	std::map<std::string, sf::Texture>::const_iterator it;
