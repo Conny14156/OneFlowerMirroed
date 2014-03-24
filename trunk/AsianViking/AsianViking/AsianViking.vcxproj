@@ -44,12 +44,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\SPK10nguyen\Dropbox\AsianViking\SFML-2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\SPK10nguyen\Dropbox\SVN\SFML-2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\SPK10nguyen\Dropbox\AsianViking\SFML-2.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\SPK10nguyen\Dropbox\SVN\SFML-2.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,7 +67,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Component\BaseComponentDefiner.cpp" />
+    <ClCompile Include="Component\RenderComponentDefiner.cpp" />
+    <ClCompile Include="GameObjectDefiner.cpp" />
+    <ClCompile Include="RenderHandlerDefiner.cpp" />
+    <ClCompile Include="WindowHandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Component\BaseComponent.h" />
+    <ClInclude Include="Component\RenderComponent.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="RenderHandler.h" />
+    <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="test.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
