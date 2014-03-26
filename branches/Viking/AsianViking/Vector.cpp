@@ -19,14 +19,4 @@ Vector3& Vector3::operator=(const Vector3 &_vector3)
 }
 
 
-
-Vector3& Vector3::operator=(const XMFLOAT3 &_xmFloat3)
-{
-	x = _xmFloat3.x;
-	y = _xmFloat3.y;
-	z = _xmFloat3.z;
-	
-
-	return *this;
-}
 //*/

@@ -72,6 +72,7 @@
     <ClCompile Include="Component\RenderComponentDefiner.cpp" />
     <ClCompile Include="GameObjectDefiner.cpp" />
     <ClCompile Include="RenderHandlerDefiner.cpp" />
+    <ClCompile Include="Vector.cpp" />
     <ClCompile Include="WindowHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +81,7 @@
     <ClInclude Include="Component\RenderComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="RenderHandler.h" />
+    <ClInclude Include="Vector.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,6 @@ public:
 	void moveSprite(sf::Sprite *sprite, float moveSpeedX, float moveSpeedY, float deltaTime);
 
 private:
-	
 	const std::string componentName = "InputComponent";
 };
 
