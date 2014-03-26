@@ -5,12 +5,10 @@
 class RenderComponent : BaseComponent
 {
 public:
-	RenderComponent();
-	~RenderComponent();
 	const std::string componentName = "RenderComponent";
 	sf::Sprite sprite;
+	int renderlayer = 0;
 private:
-
 
 };
 

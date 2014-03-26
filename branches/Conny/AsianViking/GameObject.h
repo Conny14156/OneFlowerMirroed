@@ -8,6 +8,8 @@ class GameObject
 public:
 	GameObject();
 	~GameObject();
+	std::string name = "New GameObject";
+	unsigned int id;
 
 	//Attach a derivied component 
 	void AddComponent(BaseComponent* componentToAdd);

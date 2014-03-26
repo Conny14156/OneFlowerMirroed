@@ -14,7 +14,6 @@ bool Gfx::loadTexture(std::string name)
 	return true;
 
 }
-
 const sf::Texture* Gfx::requestTexture(std::string name) const
 {
 	std::map<std::string, sf::Texture>::const_iterator it;
@@ -27,9 +26,16 @@ const sf::Texture* Gfx::requestTexture(std::string name) const
 }
 
 
+void Gfx::Draw()
+{
 
 
 
+
+
+
+
+}
 
 
 

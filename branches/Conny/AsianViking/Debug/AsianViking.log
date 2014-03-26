@@ -1,19 +1,9 @@
-﻿Build started 2014-03-24 20:53:21.
-     1>Project "C:\Users\SPK10nguyen\Dropbox\SVN\AsianViking\AsianViking.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\SPK10nguyen\Dropbox\SVN\SFML-2.1\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Component\BaseComponentDefiner.cpp Component\RenderComponentDefiner.cpp
-         RenderComponentDefiner.cpp
-         BaseComponentDefiner.cpp
-         Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\SPK10nguyen\Dropbox\SVN\Debug\AsianViking.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\SPK10nguyen\Dropbox\SVN\SFML-2.1\lib" "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\SPK10nguyen\Dropbox\SVN\Debug\AsianViking.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\SPK10nguyen\Dropbox\SVN\Debug\AsianViking.lib" /MACHINE:X86 Debug\BaseComponentDefiner.obj
-         Debug\RenderComponentDefiner.obj
-         Debug\GameObjectDefiner.obj
-         Debug\RenderHandlerDefiner.obj
-         Debug\WindowHandler.obj
-         AsianViking.vcxproj -> C:\Users\SPK10nguyen\Dropbox\SVN\Debug\AsianViking.exe
-     1>Done Building Project "C:\Users\SPK10nguyen\Dropbox\SVN\AsianViking\AsianViking.vcxproj" (Build target(s)).
+﻿Build started 2014-03-26 17:55:13.
+     1>Project "\\edunet\dfs\home13\ht13\conngh131\Desktop\asian-viking\AsianViking\AsianViking\AsianViking.vcxproj" on node 2 (Build target(s)).
+       Project file contains ToolsVersion="12.0". This toolset is unknown or missing. You may be able to resolve this by installing the appropriate .NET Framework for this toolset. Treating the project as if it had ToolsVersion="4.0".
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.Cpp.Platform.targets(44,5): error MSB8020: The builds tools for v120 (Platform Toolset = 'v120') cannot be found. To build using the v120 build tools, either click the Project menu or right-click the solution, and then select "Update VC++ Projects...". Install v120 to build using the v120 build tools.
+     1>Done Building Project "\\edunet\dfs\home13\ht13\conngh131\Desktop\asian-viking\AsianViking\AsianViking\AsianViking.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:13.27
+Time Elapsed 00:00:00.00

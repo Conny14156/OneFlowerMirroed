@@ -1,6 +1,6 @@
 #ifndef RenderHandler_H
 #define RenderHandler_H
-#include<SFML\Graphics\Texture.hpp>
+#include <SFML\Graphics\Texture.hpp>
 #include <map>
 class Gfx
 {
@@ -15,10 +15,14 @@ public:
 	//request removal of texture if its not in use
 	void requestRemovalOfTexture(std::string name);
 
+
+	//Draw all Game object with RenderComponent attached to it
+	void Draw();
+
+
 private:
 	//Map with all texture, key value is the name of the texture
 	std::map<std::string, sf::Texture> loadedTextureMap;
-
 };
 //ReadOnly
 const Gfx* RequestGfx();
