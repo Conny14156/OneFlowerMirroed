@@ -16,6 +16,8 @@ protected:
 	//Gameobject this component currently attached to;
 	GameObject* attachedOn;
 
+private:
+
 	//Name of the component
 	const std::string componentName = "BaseComponent";
 

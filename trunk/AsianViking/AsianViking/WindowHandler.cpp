@@ -1,14 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include "Window.h"
 #include "RenderHandler.h"
+#include "Component\InputComponent.h"
 sf::RenderWindow* mainWindow;
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
 	sf::Sprite tSprite;
+	//InpComp to be removed (2014-03-26)
+	InputComponent InpComp;
+	float moveSpeedX = 1, moveSpeedY = 1;
 
 	SetGfx()->loadTexture("test.png");
 	tSprite.setTexture(*SetGfx()->requestTexture("test.png"));
@@ -22,16 +24,11 @@ int main()
 				window.close();
 		}
 
-		shape.setFillColor(sf::Color::Green);
-		shape.setRadius(100.f);
+		//Testing of function - to be removed (2014-03-26)
+		InpComp.moveSprite(&tSprite, moveSpeedX, moveSpeedY, 1);
+
 		window.clear();
-		window.draw(shape);
-
-		shape.setFillColor(sf::Color::Black);
-		shape.setRadius(50.f);
-		window.draw(shape);
 		window.draw(tSprite);
-
 		window.display();
 	}
 
