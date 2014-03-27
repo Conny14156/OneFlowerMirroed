@@ -3,7 +3,7 @@
 #include <SFML\Graphics.hpp>
 
 //Read Only
-const sf::RenderWindow* GetWindow();
+const sf::RenderWindow* RequestWindow();
 
 //Returns a modifiyable pointer towards the main window
 sf::RenderWindow* SetWindow();

@@ -39,9 +39,12 @@ int main()
 
 }
 //Read Only
-const sf::RenderWindow* GetWindow()
+const sf::RenderWindow* RequestWindow()
 {
 	return mainWindow;
 }
 
-
+sf::RenderWindow* SetWindow()
+{
+	return mainWindow;
+}

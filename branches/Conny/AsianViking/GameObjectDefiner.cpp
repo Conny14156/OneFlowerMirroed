@@ -4,9 +4,10 @@
 std::map<GameObject*,unsigned int> listOfGameObjectID;
 std::vector<unsigned int> listOfOldGameObjectID;
 
+unsigned int RequestID();
 GameObject::GameObject()
 {
-	this->id = RequerstID();
+	this->id = RequestID();
 	listOfGameObjectID.insert(listOfGameObjectID.end(), std::make_pair(this, this->id));
 }
 GameObject::~GameObject()
@@ -18,8 +19,6 @@ GameObject::~GameObject()
 
 	if (it != listOfGameObjectID.end())
 		listOfGameObjectID.erase(it);
-
-
 }
 
 void GameObject::AddComponent(BaseComponent* componentToAttach)
@@ -39,7 +38,7 @@ void GameObject::AddComponent(BaseComponent* componentToAttach)
 }
 
 //Return a unused or a new ID
-unsigned int RequerstID()
+unsigned int RequestID()
 {
 	if (listOfGameObjectID.size() > 0)
 		return 1;
