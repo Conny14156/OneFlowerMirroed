@@ -44,11 +44,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>\\edunet\dfs\home13\ht13\vikpeh131\Desktop\AsianViking\SFML-2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Viking\Desktop\Viking\SFML-2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>\\edunet\dfs\home13\ht13\vikpeh131\Desktop\AsianViking\SFML-2.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Viking\Desktop\Viking\SFML-2.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -68,6 +68,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Component\BaseComponentDefiner.cpp" />
+    <ClCompile Include="Component\EnvironmentColliderComponentDefiner.cpp" />
     <ClCompile Include="Component\InputComponentDefiner.cpp" />
     <ClCompile Include="Component\RenderComponentDefiner.cpp" />
     <ClCompile Include="GameObjectDefiner.cpp" />
@@ -77,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component\BaseComponent.h" />
+    <ClInclude Include="Component\EnvironmentColliderComponent.h" />
     <ClInclude Include="Component\InputComponent.h" />
     <ClInclude Include="Component\RenderComponent.h" />
     <ClInclude Include="GameObject.h" />
