@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Vector2.hpp>
 #include "Window.h"
 #include "RenderHandler.h"
 #include "Component\InputComponent.h"
-#include "Vector.h"
+#include "Component\EnvironmentColliderComponent.h"
+
 sf::RenderWindow* mainWindow;
 
 int main()
@@ -13,15 +15,23 @@ int main()
 	sf::Sprite tSprite2;
 	//InpComp to be removed (2014-03-26)
 	InputComponent InpComp;
+	EnvironmentColliderComponent EnvColComp;
 	float moveSpeedX = 1, moveSpeedY = 1;
 
 	//test(2014-03-26)
-	tSprite.setPosition(400, 300);
+	tSprite.setPosition(100, 50);
+	tSprite2.setPosition(400, 300);
 
 	SetGfx()->loadTexture("test.png");
 	tSprite.setTexture(*SetGfx()->requestTexture("test.png"));
 	//test (2014-03-26)
 	tSprite2.setTexture(*SetGfx()->requestTexture("test.png"));
+
+	//test (2014-03-27)
+	sf::Vector2u size = tSprite.getTexture()->getSize();
+	sf::Vector2u size2 = tSprite2.getTexture()->getSize();
+	tSprite.setOrigin(size.x / 2, size.y / 2);
+	tSprite2.setOrigin(size2.x / 2, size2.y / 2);
 
 	while (window.isOpen())
 	{
@@ -35,17 +45,16 @@ int main()
 		//Testing of function - to be removed (2014-03-26)
 		InpComp.moveSprite(&tSprite, moveSpeedX, moveSpeedY, 1);
 
-		//test (2014-03-26)
+
+		//Testing collision detection (2014-03-27)
 		sf::FloatRect boundingBoxPlayer = tSprite.getGlobalBounds();
 		sf::FloatRect boundingBoxOther = tSprite2.getGlobalBounds();
-		if (boundingBoxPlayer.intersects(boundingBoxOther)) {
-			tSprite.setPosition(400, 300);
-		}
+		if (boundingBoxPlayer.intersects(boundingBoxOther))
+			EnvColComp.environmentCollision(&tSprite, tSprite2);
 
 		window.clear();
-		window.draw(tSprite);
-		//test (2014-03-26)
 		window.draw(tSprite2);
+		window.draw(tSprite);
 		window.display();
 	}
 

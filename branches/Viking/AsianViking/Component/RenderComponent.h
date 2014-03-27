@@ -7,10 +7,9 @@ class RenderComponent : BaseComponent
 public:
 	RenderComponent();
 	~RenderComponent();
-	const std::string componentName = "RenderComponent";
 	sf::Sprite sprite;
 private:
-
+	const std::string componentName = "RenderComponent";
 
 };
 
