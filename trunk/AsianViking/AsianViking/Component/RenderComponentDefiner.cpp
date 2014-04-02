@@ -1,10 +1,7 @@
 #include "RenderComponent.h"
 
 
-RenderComponent::RenderComponent()
+std::string RenderComponent::getTypeName()
 {
-}
-
-RenderComponent::~RenderComponent()
-{
+	return "RenderComponent";
 }
