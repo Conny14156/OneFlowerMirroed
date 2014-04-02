@@ -80,7 +80,6 @@
     <ClInclude Include="Component\RenderComponent.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameObjectIDAssigner.h" />
     <ClInclude Include="RenderHandler.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Window.h" />

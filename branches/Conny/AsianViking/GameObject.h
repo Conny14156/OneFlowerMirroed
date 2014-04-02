@@ -7,6 +7,8 @@ class GameObject
 {
 public:
 	GameObject();
+	GameObject(std::string _name);
+
 	~GameObject();
 	std::string name = "New GameObject";
 	unsigned int id;
@@ -14,30 +16,31 @@ public:
 	//Attach a derivied component 
 	void AddComponent(BaseComponent* componentToAdd);
 
-	template<class templateComponent>
 	//Returns a component pointer from the componentMap
-	templateComponent* GetComponent()
+	#pragma region GetComponent Non Const
+	template<class T_S>
+	T_S* GetComponent()
 	{
-		std::string componentTypeName = typeid(templateComponent).name;
-		//Removes the char's "Class" and ' '
+		std::string test = typeid(T_S).name();
+		std::map<std::string, BaseComponent*>::iterator it;
+
 		for (int i = 0; i < 6; i++)
 		{
-			componentTypeName.erase(componentTypeName.begin());
+			test.erase(test.begin());
 		}
-		std::map<std::string, BaseComponent*>::const_iterator it = componentMap.find(componentTypeName);
+		it = componentMap.find(test);
 
-		if (it != componentTypeName.end())
+		if (it != componentMap.end())
 		{
-			templateComponent ptTComponent;
-			ptTComponent = (templateComponent*)it->second;
+			T_S* ptTComponent;
+			ptTComponent = (T_S*)it->second;
 
 			return ptTComponent;
 		}
 		else
 			return NULL;
-
 	}
-
+	#pragma endregion
 protected:
 	//List of all component that is currently attached to the GameObject
 	std::map<std::string,BaseComponent*> componentMap;

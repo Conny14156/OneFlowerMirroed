@@ -9,7 +9,6 @@
 Gfx gfx;
 bool Gfx::loadTexture(std::string name)
 {
-	
 	sf::Texture tempTexture;
 	if (!tempTexture.loadFromFile(name))
 	{
@@ -32,48 +31,63 @@ const sf::Texture* Gfx::requestTexture(std::string name) const
 void Gfx::insertDrawableObject(GameObject* entityToDraw)
 {
 	std::map<int, std::vector<GameObject*>>::iterator it;
-	int renderID = 5; // entityToDraw->GetComponent<RenderComponent>()->renderlayer;
+	int renderID = entityToDraw->GetComponent<RenderComponent>()->renderlayer;
+
+
+
+	std::map < int, std::vector<GameObject*>>::iterator endIt;
+
+	endIt = gameObjectDrawList.end();
 	it = this->gameObjectDrawList.find(renderID);
-	if (it != this->gameObjectDrawList.end())
-		it->second.insert(it->second.end(),entityToDraw);
-	else
+
+
+
+
+
+
+	if (it == this->gameObjectDrawList.end())
+		gameObjectDrawList.insert(gameObjectDrawList.end(), std::pair<int, std::vector<GameObject*>>(renderID, {entityToDraw}));							//it->second.insert(it->second.end(),entityToDraw);
+	else if (it != gameObjectDrawList.end())
 	{
-		for (it = gameObjectDrawList.begin(); it != this->gameObjectDrawList.end(); it++)
+		bool temp = false; //Rework this, Somehow: check .end()->first < renderID
+		#pragma region EntityToDrawInsertionBetween layers
+		for (it = gameObjectDrawList.begin(); it != gameObjectDrawList.end(); it++)
 		{
 			if (renderID > it->first)
 			{
-				if (renderID < it->first + 1)
+				if (renderID < 1 + it->first)
 				{
-					gameObjectDrawList.insert	(
-													gameObjectDrawList.begin(),
-													std::pair	<
-																	int,
-																	std::vector<GameObject*>
-																>//the type of the pair
-																	(
-																		renderID,
-																		{
-																			{ entityToDraw }
-																		}//For list SequenceClass 
-																	)//Constructor value for std::pair
-												);//for insert
+					gameObjectDrawList.insert
+											(	gameObjectDrawList.begin(),
+												std::pair<int, std::vector<GameObject*>>(renderID, { entityToDraw })
+											);
+					temp = true;
+					break;
 				}
 			}
 		}
+		#pragma endregion
+		if(!temp)
+			gameObjectDrawList.at(renderID).push_back(entityToDraw);
+		
 	}
 }
 
 void Gfx::Draw()
 {
-
-//	std::list<std::list<GameObject>> drawOrder;
 	/*
-	for (int i = 0; i < RequestGame()->requestAllGameObjecVector()->size(); i++)
-	{
-		//SetWindow()->draw(RequestGame()->requestAllGameObjectMap()->at(i));
-		
-	}
+
+	std::map<int, std::vector<GameObject*>>::iterator it;
+	it = gameObjectDrawList.begin();
+	it->second.at(0);
+	gameObjectDrawList.at(0).at(0);
 	//*/
+	for (std::map<int, std::vector<GameObject*>>::iterator it = gameObjectDrawList.begin(); it != gameObjectDrawList.end(); it++)
+		for (int j = 0; j < it->second.size(); j++)
+		{
+			SetWindow()->draw(it->second[j]->GetComponent<RenderComponent>()->sprite);
+			SetEditWindow()->draw(it->second[j]->GetComponent<RenderComponent>()->sprite);
+		}
 }
 
 

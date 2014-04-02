@@ -42,9 +42,6 @@
     <ClInclude Include="Vector.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectIDAssigner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowHandler.cpp">

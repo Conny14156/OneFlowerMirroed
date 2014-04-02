@@ -1,18 +1,30 @@
 #include <SFML/Graphics.hpp>
 #include "Window.h"
 #include "RenderHandler.h"
-sf::RenderWindow* mainWindow;
+#include "GameObject.h"
+#include "Component\RenderComponent.h"
+#include "Game.h"
 
+sf::RenderWindow* mainWindow;
+sf::RenderWindow* editWindow;
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-	sf::Sprite tSprite;
+	sf::RenderWindow eWindow(sf::VideoMode(800, 600), "Editor!");
+	GameObject tGameObject[5];
+	mainWindow = &window;
+	editWindow = &eWindow;
 
 	SetGfx()->loadTexture("test.png");
-	tSprite.setTexture(*SetGfx()->requestTexture("test.png"));
-	//*/
+	for (size_t i = 0; i < 5; i++)
+	{
+		tGameObject[i].AddComponent(new RenderComponent);
+		tGameObject[i].GetComponent<RenderComponent>()->sprite.setTexture(*SetGfx()->requestTexture("test.png"));
+		tGameObject[i].GetComponent<RenderComponent>()->sprite.setScale(0.1 + i * 0.1, 0.1 + i * 0.1);
+
+		tGameObject[i].GetComponent<RenderComponent>()->sprite.setPosition(50, 50 * i);
+		SetGame()->addGameObject(&tGameObject[i]);
+	}
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -22,22 +34,22 @@ int main()
 				window.close();
 		}
 
-		shape.setFillColor(sf::Color::Green);
-		shape.setRadius(100.f);
 		window.clear();
-		window.draw(shape);
+		eWindow.clear();
 
-		shape.setFillColor(sf::Color::Black);
-		shape.setRadius(50.f);
-		window.draw(shape);
-		window.draw(tSprite);
+		SetGfx()->Draw();//Change this to const verseion aka Request
 
+		
+		eWindow.display();
 		window.display();
 	}
 
 	return 0;
 
 }
+	
+
+
 //Read Only
 const sf::RenderWindow* RequestWindow()
 {
@@ -48,3 +60,7 @@ sf::RenderWindow* SetWindow()
 {
 	return mainWindow;
 }
+sf::RenderWindow* SetEditWindow()
+{
+	   return editWindow;
+}	

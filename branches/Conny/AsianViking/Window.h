@@ -7,5 +7,5 @@ const sf::RenderWindow* RequestWindow();
 
 //Returns a modifiyable pointer towards the main window
 sf::RenderWindow* SetWindow();
-
+sf::RenderWindow* SetEditWindow();
 #endif
