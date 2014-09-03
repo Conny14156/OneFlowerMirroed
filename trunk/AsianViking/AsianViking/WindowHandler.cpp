@@ -1,55 +1,81 @@
 #include <SFML/Graphics.hpp>
-#include "Window.h"
+#include "CustomWindow.h"
 #include "RenderHandler.h"
-#include "GameObject.h"
+#include "Component\GameObject.h"
 #include "Component\RenderComponent.h"
 #include "Game.h"
-
+#include "LoadAndSave.hpp"
+#include "Component\BaseComponent.hpp"
+#include "Component\IBaseComponent.hpp"
+#include <Windows.h>
+#include "Component\HitboxComponent.hpp"
+#include "Component\TransformComponent.hpp"
 sf::RenderWindow* mainWindow;
 
-sf::RenderWindow* editWindow;
-int main()
+EditorWindow editorWindow;
+int windowMessage();
+int WINAPI WinMain(HINSTANCE hInstance,HINSTANCE prevInstance,LPSTR lpCmnLine,int nShowCmd)
+{
+	editorWindow.hInstance = hInstance;
+	windowMessage();
+	return 0;
+}
+int windowMessage()
 {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
-	sf::RenderWindow eWindow(sf::VideoMode(800, 600), "Editor!");
-	GameObject tGameObject[5];
+	//sf::RenderWindow eWindow(,);	//(sf::VideoMode(800, 600), "Editor!");
 	mainWindow = &window;
-	editWindow = &eWindow;
+	sf::Texture ab;
+	GameObject a("Testiing Object Simon does not listen");
+	a.AddComponent(new HitboxComponent());
 
-	SetGfx()->loadTexture("test.png");
-	for (size_t i = 0; i < 5; i++)
-	{
-		tGameObject[i].AddComponent(new RenderComponent);
-		tGameObject[i].GetComponent<RenderComponent>()->sprite.setTexture(*SetGfx()->requestTexture("test.png"));
-		tGameObject[i].GetComponent<RenderComponent>()->sprite.setScale(0.1 + i * 0.1, 0.1 + i * 0.1);
+	a.AddComponent(new RenderComponent());
+	SetGame()->addGameObject(&a);
 
-		tGameObject[i].GetComponent<RenderComponent>()->sprite.setPosition(50, 50 * i);
-		SetGame()->addGameObject(&tGameObject[i]);
-	}
-	while (window.isOpen())
+
+	sf::Sprite* sprite = &a.GetComponent<RenderComponent>()->sprite;
+	sprite->setOrigin(0,1);
+	a.GetComponent<TransformComponent>()->position.x = 100;
+	MSG msg;
+		ZeroMemory(&msg,sizeof(MSG));
+		sf::Sprite bat;
+		bat.setTexture(*SetGfx()->requestTexture("test.png"));
+		bat.setOrigin(bat.getTextureRect().width / 2,bat.getTextureRect().height/2);
+	while(window.isOpen())
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
+
+		if(PeekMessage(&msg,NULL,0,0,PM_REMOVE))
 		{
-			if (event.type == sf::Event::Closed)
+			if(msg.message == WM_QUIT)
+			{
 				window.close();
+				break;
+			}
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		else
+		{
+			while(window.pollEvent(event))
+				if(event.type == sf::Event::Closed)
+					window.close();
+
+			window.clear();
+			SetGame()->Update();
+		//	SetGfx()->Draw();//Change this to const verseion aka Request
+			window.draw(bat);
+			window.display();
 		}
 
-		window.clear();
-		eWindow.clear();
-
-		SetGfx()->Draw();//Change this to const verseion aka Request
-
-		
-		eWindow.display();
-		window.display();
 	}
-
-	return 0;
-
+	return (int)msg.wParam;
 }
 	
-
+EditorWindow* SetEditorWindow()
+{
+	return &editorWindow;
+}
 
 //Read Only
 const sf::RenderWindow* RequestWindow()
@@ -60,8 +86,4 @@ const sf::RenderWindow* RequestWindow()
 sf::RenderWindow* SetWindow()
 {
 	return mainWindow;
-}
-sf::RenderWindow* SetEditWindow()
-{
-	   return editWindow;
 }	

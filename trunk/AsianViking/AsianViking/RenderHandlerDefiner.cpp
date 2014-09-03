@@ -1,14 +1,16 @@
 #include <Windows.h>
 #include <list>
 #include <math.h>
-#include "Window.h"
+#include "CustomWindow.h"
 #include "RenderHandler.h"
 #include "Game.h"
-#include "GameObject.h"
+#include "Component\GameObject.h"
 #include "Component\RenderComponent.h"
 #include <SFML\Graphics\Sprite.hpp>
+#include "Component\TransformComponent.hpp"
 Gfx gfx;
-bool Gfx::loadTexture(std::string name)
+
+bool Gfx::loadTexture(std::string name) 
 {
 	sf::Texture tempTexture;
 	if (!tempTexture.loadFromFile(name))
@@ -21,12 +23,14 @@ bool Gfx::loadTexture(std::string name)
 	return true;
 
 }
-const sf::Texture* Gfx::requestTexture(std::string name) const
+sf::Texture* Gfx::requestTexture(std::string name) 
 {
-	std::map<std::string, sf::Texture>::const_iterator it;
+	std::map<std::string, sf::Texture>::iterator it;
 	it = loadedTextureMap.find(name);
 	if (it != loadedTextureMap.end())
 		return &it->second;
+	if(loadTexture(name))
+		return &loadedTextureMap.find(name)->second;
 	return false;
 }
 void Gfx::insertDrawableObject(GameObject* entityToDraw)
@@ -73,23 +77,28 @@ void Gfx::insertDrawableObject(GameObject* entityToDraw)
 		
 	}
 }
-
 void Gfx::Draw()
 {
-	/*
-
-	std::map<int, std::vector<GameObject*>>::iterator it;
-	it = gameObjectDrawList.begin();
-	it->second.at(0);
-	gameObjectDrawList.at(0).at(0);
-	//*/
 	for (std::map<int, std::vector<GameObject*>>::iterator it = gameObjectDrawList.begin(); it != gameObjectDrawList.end(); it++)
 		for (int j = 0; j < it->second.size(); j++)
 		{
-			SetWindow()->draw(it->second[j]->GetComponent<RenderComponent>()->sprite);
-			SetEditWindow()->draw(it->second[j]->GetComponent<RenderComponent>()->sprite);
+			RenderComponent* rc = it->second[j]->GetComponent<RenderComponent>();
+			TransformComponent* tc = it->second[j]->GetComponent<TransformComponent>();
+			rc->sprite.setPosition(tc->position.x,tc->position.y);
+			SetWindow()->draw(rc->sprite);
+			//SetEditWindow()->draw(it->second[j]->GetComponent<RenderComponent>()->sprite);	
 		}
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

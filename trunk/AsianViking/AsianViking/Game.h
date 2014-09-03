@@ -13,22 +13,24 @@ public:
 	GameObject* requestGameObject(std::string);
 	//Get a pointer towards a GameObject via a its IdentityCode
 	GameObject* requestGameObject(unsigned int ID);
-	
-	GameObject* requestGameObject(GameObject* gameObjectPointer);
+	//Get a pointer towards a GameObject via a copy pointer 
+	GameObject* requestGameObject(const GameObject* gameObjectPointer );
 
 	//This one work
 	void addGameObject(GameObject* entity);
 
+	void addGameObject(GameObject entity);
 	//This one doesnt work
 	void addGameObject(std::string);
 
 	//Return a const pointer of all the gameobject vector
-	const std::vector<GameObject>* requestAllGameObjecVector() const;
+	const std::vector<GameObject*>* requestAllGameObjecVector() const;
 
 	void requestRemoveal(GameObject* entity);
+	void Update();
 
 private:
-	std::vector<GameObject*> _allGameObjectVector;
+	std::vector<GameObject*> allGameObjectPointers;
 
 
 
