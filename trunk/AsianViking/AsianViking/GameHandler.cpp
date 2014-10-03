@@ -28,6 +28,7 @@ void Game::Update()
 				GameObject* ab = allGameObjectPointers.at(i);
 
 
+
 				if((mouse.x <= (transform->position.x + (rc->sprite.getTextureRect().width / 2) * hitbox->size.x) &&
 					mouse.x >= (transform->position.x - (rc->sprite.getTextureRect().width / 2) * hitbox->size.x)
 					))

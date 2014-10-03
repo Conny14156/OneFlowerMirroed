@@ -28,7 +28,6 @@ int windowMessage()
 	sf::Texture ab;
 	GameObject a("Testiing Object Simon does not listen");
 	a.AddComponent(new HitboxComponent());
-
 	a.AddComponent(new RenderComponent());
 	SetGame()->addGameObject(&a);
 

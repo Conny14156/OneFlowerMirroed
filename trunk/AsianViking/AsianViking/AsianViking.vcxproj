@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)SFML-2.1\include;$(SolutionDir)cereal-1.0.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)SFML-2.1\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Lib\SFML-2.1\include;$(SolutionDir)Lib\cereal-1.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Lib\SFML-2.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -84,6 +84,7 @@
     <ClCompile Include="GameHandler.cpp" />
     <ClCompile Include="LoadAndSave.cpp" />
     <ClCompile Include="RenderHandlerDefiner.cpp" />
+    <ClCompile Include="TileDefiner.cpp" />
     <ClCompile Include="WindowDefiner.cpp" />
     <ClCompile Include="WindowHandler.cpp" />
     <ClCompile Include="WorldManagement.cpp" />
@@ -98,6 +99,7 @@
     <ClInclude Include="Component\TransformComponent.hpp" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="LoadAndSave.hpp" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="ZoneMap.hpp" />
     <ClInclude Include="RenderHandler.h" />
     <ClInclude Include="Vector.h" />
@@ -109,6 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\win7Style.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="hit.frag" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

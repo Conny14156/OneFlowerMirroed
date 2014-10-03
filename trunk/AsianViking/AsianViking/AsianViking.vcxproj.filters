@@ -66,6 +66,9 @@
     <ClInclude Include="Component\HitboxComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WindowHandler.cpp">
@@ -107,6 +110,9 @@
     <ClCompile Include="Component\TransformComponentDefiner.cpp">
       <Filter>Source Files\ComponentDefiners</Filter>
     </ClCompile>
+    <ClCompile Include="TileDefiner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="test.png">
@@ -117,5 +123,8 @@
     <Xml Include="..\win7Style.xml">
       <Filter>Resource Files</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="hit.frag" />
   </ItemGroup>
 </Project>

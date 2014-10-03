@@ -9,7 +9,23 @@
 #include <SFML\Graphics\Sprite.hpp>
 #include "Component\TransformComponent.hpp"
 Gfx gfx;
+Gfx::Gfx()
+{
+	camera.reset(sf::FloatRect(sf::Vector2f(0,0),sf::Vector2f(800,600)));
 
+	for(int i = 0; i < 5; i++)
+	{
+		std::vector<Tile> temp;
+
+		for(int j = 0; j < 5; j++)
+		{
+			Tile tTemp(i,j);
+			tTemp.sprite.setPosition(i*tTemp.sprite.getTextureRect().width,j*tTemp.sprite.getTextureRect().height);
+			temp.push_back(tTemp);
+		}
+		tileList.push_back(temp);
+	}
+}
 bool Gfx::loadTexture(std::string name) 
 {
 	sf::Texture tempTexture;
@@ -44,10 +60,6 @@ void Gfx::insertDrawableObject(GameObject* entityToDraw)
 
 	endIt = gameObjectDrawList.end();
 	it = this->gameObjectDrawList.find(renderID);
-
-
-
-
 
 
 	if (it == this->gameObjectDrawList.end())
@@ -88,6 +100,16 @@ void Gfx::Draw()
 			SetWindow()->draw(rc->sprite);
 			//SetEditWindow()->draw(it->second[j]->GetComponent<RenderComponent>()->sprite);	
 		}
+}
+void Gfx::DrawBG()
+{
+	for(int i = 0; this->tileList.size(); i++)
+	{
+		for(int j = 0; tileList.at(0).size(); j++)
+		{
+
+		}
+	}
 }
 
 
