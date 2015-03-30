@@ -235,6 +235,20 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 					break;
 				}
 				#pragma endregion
+
+#pragma region ZONE_MENU
+				case ID_SETBACKGROUND:
+				{
+					MessageBox(Engine::Window.hWnd, "TODO", "INFO", NULL);
+					break;
+				}
+
+				case ID_SETBACKGROUND_SIZE:
+				{
+					MessageBox(Engine::Window.hWnd, "TODO", "INFO", NULL);
+					break;
+				}
+#pragma endregion
 			}
 			switch(HIWORD(wParam))
 			{
