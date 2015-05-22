@@ -29,7 +29,9 @@
 #include "Component\StatsComponent.hpp"
 #include "Component\HealthComponent.hpp"
 #include "Component\InventoryComponent.hpp"
-
+#include "Component\ReputationComponent.hpp"
+#include "Component\ProjectilePatternComponent.hpp"
+#include "Component\LevelComponent.h"
 #define SHOW_COMMAND_ID 501
 #define SET_NULL_FOCUS_ID 503
 
@@ -124,24 +126,32 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 				{
 					if(Engine::Window.focus.gameObject)
 						Engine::Window.focus.gameObject->AddComponent<DialogComponent>();
+					else
+						MessageBoxA(0,"No focused Object, Select a GameObject first","Error 500",0);
 					break;
 				}
 				case ADD_HitboxComponent:
 				{
 					if(Engine::Window.focus.gameObject)
 						Engine::Window.focus.gameObject->AddComponent<HitboxComponent>();
+					else
+						MessageBoxA(0,"No focused Object, Select a GameObject first","Error 500",0);
 					break;
 				}
 				case ADD_OverHeadComponent:
 				{
 					if(Engine::Window.focus.gameObject)
 						Engine::Window.focus.gameObject->AddComponent<OverheadComponent>();
+					else
+						MessageBoxA(0,"No focused Object, Select a GameObject first","Error 500",0);
 					break;
 				}
 				case ADD_RenderComponent:
 				{
 					if(Engine::Window.focus.gameObject)
 						Engine::Window.focus.gameObject->AddComponent<RenderComponent>();
+					else
+						MessageBoxA(0,"No focused Object, Select a GameObject first","Error 500",0);
 					break;
 				}
 
@@ -149,24 +159,50 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 				{
 					if(Engine::Window.focus.gameObject)
 						Engine::Window.focus.gameObject->AddComponent<RigidComponent>();
+					else
+						MessageBoxA(0,"No focused Object, Select a GameObject first","Error 500",0);
 					break;
 				}
 				case ADD_TransformComponent:
 				{
 					if(Engine::Window.focus.gameObject)
 						Engine::Window.focus.gameObject->AddComponent<TransformComponent>();
+					else
+						MessageBoxA(0,"No focused Object, Select a GameObject first","Error 500",0);
 					break;
 				}
 				case ADD_StatsComponent:
 				{
 					if(Engine::Window.focus.gameObject)
 						Engine::Window.focus.gameObject->AddComponent<StatsComponent>();
+					else
+						MessageBoxA(0,"No focused Object, Select a GameObject first","Error 500",0);
 					break;
 				}
 				case ADD_HealthComponent:
 				{
 					if(Engine::Window.focus.gameObject)
 						Engine::Window.focus.gameObject->AddComponent<HealthComponent>();
+					else
+						MessageBoxA(0,"No focused Object, Select a GameObject first","Error 500",0);
+					break;
+				}
+				case ADD_ReputationComponent:
+				{
+					if (Engine::Window.focus.gameObject)
+						Engine::Window.focus.gameObject->AddComponent<ReputationComponent>();
+					break;
+				}
+				case ADD_ProjectilePatternComponent:
+				{
+					if (Engine::Window.focus.gameObject)
+						Engine::Window.focus.gameObject->AddComponent<ProjectilePatternComponent>();
+					break;
+				}
+				case ADD_LevelComponent:
+				{
+					if (Engine::Window.focus.gameObject)
+						Engine::Window.focus.gameObject->AddComponent<LevelComponent>();
 					break;
 				}
 				case ADD_InventoryComponent:
@@ -239,11 +275,13 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 				}
 				case ID_SETBACKGROUND:
 				{
-					char name[100] = { 0 };
+					char buffer[100] = {0};
 					//Probably redo this with editorfield instead
-					InputDialog::InputBox("Set Background", name, NULL, 100, hWnd,ID_DIALOG_RENAME);
-					if (!InputDialog::getIfCancelled())
-						Engine::World.EditorSetBackground(name);
+					InputDialog::InputBox("SetBackground",buffer,NULL,100,hWnd,ID_DIALOG_RENAME);
+					if(!InputDialog::getIfCancelled())
+						Engine::World.EditorSetBackground(buffer);
+					else
+						MessageBox(Engine::Window.hWnd,"TODO","INFO",NULL);
 					break;
 				}
 
@@ -292,11 +330,37 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 			}
 			break;
 		}
-		case WM_MOVE:
+		case WM_WINDOWPOSCHANGED:
 		{
-#pragma region WM_MOVE
+#pragma region WM_WINDOWPOSCHANGED
 			RECT a = EditorUI::GetLocalCoordinates(hWnd);
 			RECT b = EditorUI::GetLocalCoordinates(Engine::View.hWnd);
+#pragma region Focus Window
+			SetWindowPos
+				(
+				Engine::Window.focus.hWnd,hWnd,
+				a.right - (Engine::Window.focus.size.x + GetSystemMetrics(SM_CXBORDER) + (GetSystemMetrics(SM_CXSIZEFRAME) + GetSystemMetrics(SM_CXEDGE) * 2)),
+				//LOW: Replace with GetThemeSysSize inside UxTheme.h
+				a.top + GetSystemMetrics(SM_CYCAPTION) + (GetSystemMetrics(SM_CYSIZEFRAME) + GetSystemMetrics(SM_CYEDGE) * 2) + GetSystemMetrics(SM_CYMENU),
+				b.right - b.left,
+				b.bottom - b.top,
+				SWP_NOSIZE
+				);
+#pragma endregion
+#pragma region ListView Window
+			SetWindowPos
+				(
+				Engine::Window.ListViewer.hWnd,hWnd,
+				a.right - (Engine::Window.ListViewer.size.x + Engine::Window.focus.size.x + GetSystemMetrics(SM_CXBORDER) + (GetSystemMetrics(SM_CXSIZEFRAME) + GetSystemMetrics(SM_CXEDGE) * 2)),
+				//LOW: Replace with GetThemeSysSize inside UxTheme.h
+				a.top + GetSystemMetrics(SM_CYCAPTION) + (GetSystemMetrics(SM_CYSIZEFRAME) + GetSystemMetrics(SM_CYEDGE) * 2) + GetSystemMetrics(SM_CYMENU),
+				b.right - b.left,
+				b.bottom - b.top,
+				SWP_NOSIZE
+				);
+#pragma endregion
+
+#pragma region Game View
 			SetWindowPos
 				(
 				Engine::View.hWnd,hWnd,
@@ -307,6 +371,8 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 				b.bottom - b.top,
 				SWP_NOSIZE
 				);
+#pragma endregion
+
 #pragma endregion
 			break;
 		}

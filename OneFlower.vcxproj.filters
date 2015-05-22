@@ -181,9 +181,6 @@
     <ClInclude Include="Project\Physics.hpp">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Project\PhysicsQuad.hpp">
-      <Filter>Header Files\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Project\EditorUI\EditorFieldGroup.hpp">
       <Filter>Source Files\Editor</Filter>
     </ClInclude>
@@ -275,6 +272,12 @@
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Project\Component\EquipmentComponent.hpp">
+      <Filter>Header Files\GameObject &amp; Component\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\Component\ProjectilePatternComponent.hpp">
+      <Filter>Header Files\GameObject &amp; Component\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\Component\LevelComponent.h">
       <Filter>Header Files\GameObject &amp; Component\Component</Filter>
     </ClInclude>
   </ItemGroup>
@@ -396,9 +399,6 @@
     <ClCompile Include="Project\PhysicsEngineDefiner.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Project\PhysicsQuadDefiner.cpp">
-      <Filter>Source Files\Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Project\PhysicsEngineHandler.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
@@ -454,6 +454,18 @@
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="Project\Component\EquipmentComponentDefiner.cpp">
+      <Filter>Source Files\ComponentDefiners\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\Component\ReputationComponent.hpp">
+      <Filter>Header Files\GameObject &amp; Component\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\Component\ReputationComponentDefiners.cpp">
+      <Filter>Source Files\ComponentDefiners\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\Component\ProjectilePatternComponentDefiner.cpp">
+      <Filter>Source Files\ComponentDefiners\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\Component\LevelComponentDefiner.cpp">
       <Filter>Source Files\ComponentDefiners\Component</Filter>
     </ClCompile>
   </ItemGroup>

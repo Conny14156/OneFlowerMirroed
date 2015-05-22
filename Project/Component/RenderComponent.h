@@ -30,6 +30,8 @@ public:
 	std::string textureName = "test.png";
 
 	sf::Sprite sprite;
+
+	//LOW: Remove this not needed
 	double currentFrame = 1;
 
 	//Reload texture with textureName
@@ -54,7 +56,7 @@ public:
 	Vector2 oldSizePixel;
 
 private:
-	//How many frames of the animation
+	//LOW: Remove this, dont think it needed
 	Vector2 frame;
 
 	template < class Archive>//, GameObject& go>
